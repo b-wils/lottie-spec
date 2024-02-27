@@ -23,6 +23,11 @@ def join_parts(
                             print(file_item)
                             raise
                     file_schema.pop("$schema", None)
+                    if strict and 'type' in file_schema and file_schema['type'] == "object":
+                        # TODO adding this on a base class will cause any fields
+                        # added by the child to fail validation. Do we need to 
+                        # conditonally apply it or add some markers in the schema?
+                        file_schema["unevaluatedProperties"] = False
                     dir_schema[file_item.stem] = file_schema
             defs[subdir.name] = dir_schema
 
@@ -52,11 +57,15 @@ parser.add_argument(
     default=root / "docs" / "lottie.schema.json",
     help="Output file name"
 )
+parser.add_argument('--strict', dest='strict', action='store_true')
+parser.add_argument('--not-strict', dest='strict', action='store_false')
+parser.set_defaults(strict=False)
 
 args = parser.parse_args()
 input_dir: pathlib.Path = args.input.resolve()
 output_path: pathlib.Path = args.output
 root_path: pathlib.Path = (input_dir / args.root).resolve()
+strict = args.strict
 
 with open(root_path) as file:
     json_data = json.load(file)
