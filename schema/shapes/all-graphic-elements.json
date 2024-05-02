@@ -1,15 +1,106 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$comment": "List of valid shapes",
-    "oneOf": [
-        {"$ref": "#/$defs/shapes/ellipse"},
-        {"$ref": "#/$defs/shapes/fill"},
-        {"$ref": "#/$defs/shapes/group"},
-        {"$ref": "#/$defs/shapes/path"},
-        {"$ref": "#/$defs/shapes/polystar"},
-        {"$ref": "#/$defs/shapes/rectangle"},
-        {"$ref": "#/$defs/shapes/stroke"},
-        {"$ref": "#/$defs/shapes/transform"},
-        {"$ref": "#/$defs/shapes/trim-path"}
+    "required": ["ty"],
+    "allOf": [
+        {
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": "el"}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/shapes/ellipse"
+            }
+        },
+        {
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": "fl"}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/shapes/fill"
+            }
+        },
+        {
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": "gr"}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/shapes/group"
+            }
+        },
+        {
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": "sh"}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/shapes/path"
+            }
+        },
+        {
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": "sr"}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/shapes/polystar"
+            }
+        },
+        {
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": "rc"}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/shapes/rectangle"
+            }
+        },
+        {
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": "st"}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/shapes/stroke"
+            }
+        },
+        {
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": "tr"}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/shapes/transform"
+            }
+        },
+        {
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": "tm"}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/shapes/trim-path"
+            }
+        }
     ]
 }

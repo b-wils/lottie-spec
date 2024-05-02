@@ -1,20 +1,61 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "oneOf": [
+    "required": ["ty"],
+    "allOf": [
         {
-            "$ref": "#/$defs/layers/precomposition-layer"
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": 0}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/layers/precomposition-layer"
+            }
         },
         {
-            "$ref": "#/$defs/layers/image-layer"
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": 2}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/layers/image-layer"
+            }
         },
         {
-            "$ref": "#/$defs/layers/null-layer"
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": 3}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/layers/null-layer"
+            }
         },
         {
-            "$ref": "#/$defs/layers/solid-layer"
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": 1}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/layers/solid-layer"
+            }
         },
         {
-            "$ref": "#/$defs/layers/shape-layer"
+            "if": {
+                "type": "object",
+                "properties": {
+                    "ty": {"const": 4}
+                }
+            },
+            "then": {
+                "$ref": "#/$defs/layers/shape-layer"
+            }
         }
     ]
 }
