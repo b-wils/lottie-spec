@@ -40,8 +40,9 @@
                 {
                     "if": {
                         "properties": {
-                            "e": 1
-                        }
+                            "e": {"const": 1}
+                        },
+                        "required": ["e"]
                     },
                     "then": {
                         "properties": {
