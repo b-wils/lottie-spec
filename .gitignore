@@ -2,6 +2,7 @@ docs/lottie.schema.json
 docs/lottie-strict.schema.json
 site/
 __pycache__
+node_modules
 .vscode/launch.json
 
 # Operating system
