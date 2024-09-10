@@ -3,6 +3,8 @@ docs/lottie-strict.schema.json
 site/
 __pycache__
 node_modules
+path
+venv
 .vscode/launch.json
 
 # Operating system
